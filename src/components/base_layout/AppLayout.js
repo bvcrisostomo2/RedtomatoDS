@@ -1,62 +1,56 @@
 import React, { Component } from 'react';
-import { Menu, Icon } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import './appLayout.css';
 
 // import menus from '../../utils/menu';
 
 // import components
-import Header from '../base_layout/Header/Header';
-// // import Sidebar from '../base_layout/Sidebar/Sidebar';
-// import AppBreadcrumb from '../base_layout/AppBreadcrumb';
+import AppHeader from '../base_layout/AppHeader';
+import AppBreadcrumb from '../base_layout/AppBreadcrumb';
 import AppFooter from '../base_layout/AppFooter';
-import LandingPage from '../pages/LandingPage';
-import AboutPage from '../pages/AboutPage';
-import ProjectPage from '../pages/ProjectPage';
-import omg from '../pages/work/omg';
-import mashiso from '../pages/work/mashiso';
-import mck from '../pages/work/mck';
-import jessa18 from '../pages/work/jessa18';
-import pwdo from '../pages/work/pwdo';
-import ProjectDetail from '../pages/ProjectDetail';
-import ContactPage from '../pages/ContactPage';
+import Header from '../base_layout/Header/HeaderV2';
+import ProductList from '../Products/ProductList';
+import ClientList from '../Products/ClientList';
+import QuotationList from '../Quotations/QuotationList';
+import ProductForm from '../Forms/ProductForm';
 import NoMatch from '../NoMatch/NoMatch';
+import './appLayout.css';
+import logo from '../../logo.svg';
+import QuotationDetail from '../Quotations/QuotationDetail';
 
-// import logo from './../../rtds-logo.svg';
-
-// const { Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-// const menus = module.export = [
-//   {
-//     key: 'home',
-//     name: 'Home',
-//     path: '',
-//     icon: 'line-chart',
-//     click: true,
-//   },
-//   {
-//     key: 'about',
-//     name: 'About',
-//     path: 'about',
-//     icon: 'user',
-//     click: true,
-//   },
-//   {
-//     key: 'projects',
-//     name: 'Projects',
-//     path: 'projects',
-//     icon: 'user',
-//     click: true,
-//   },
-//   {
-//     key: 'contact',
-//     name: 'Contact',
-//     path: 'contact',
-//     icon: 'user',
-//     click: true,
-//   }
-// ];
+const menus = module.export = [
+  {
+    key: 'dashboard',
+    name: 'Dashboard',
+    path: '',
+    icon: 'line-chart',
+    click: true,
+  },
+  {
+    key: 'new',
+    name: 'Product Form',
+    path: 'form',
+    icon: 'plus-circle-o',
+    click: true
+  },
+  {
+      key: 'list',
+      name: 'Product List',
+      path: 'list',
+      icon: 'database',
+      click: true
+  },
+  {
+    key: 'settings',
+    name: 'Settings',
+    path: 'settings',
+    icon: 'setting',
+    click: true
+}
+];
 
 class AppLayout extends Component {
   state = {
@@ -99,23 +93,31 @@ class AppLayout extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={LandingPage}/>
-            <Route path="/about" component={AboutPage}/>
-            <Route exact path="/work" component={ProjectPage}/>
-            <Route path="/work/omg" component={omg}/>
-            <Route path="/work/mashiso" component={mashiso}/>
-            <Route path="/work/mck" component={mck}/>
-            <Route path="/work/jessa18" component={jessa18}/>
-            <Route path="/work/pwdo" component={pwdo}/>
-            <Route path="/work/:id" component={ProjectDetail}/>
-            <Route path="/contact" component={ContactPage}/>
-            <Route component={NoMatch}/>
-          </Switch>
-          {/* <img alt data-no-retina className="splatter-background" src={logo} /> */}
-          <AppFooter />
+        <div className="wrapper">
+          <div className="header">
+            <div className="header-inner">
+              {/* <span>Redtomato Design Studio</span> */}
+              {/* <img src={logo} alt="logo" width="100px" height="100px" /> */}
+            </div>
+          </div>
+          <div className="nav">
+            <Link to='/' className="nav-item">DASHBOARD</Link>
+            <Link to='/clients' className="nav-item">CLIENTS</Link>
+            <Link to='/quotations' className="nav-item">QUOTATIONS</Link>
+            <Link to='/projects' className="nav-item">PROJECTS</Link>
+          </div>
+          <div className="content">
+              <Switch>
+                  <Route exact path="/" component={NoMatch}/>
+                  <Route exact path="/clients" component={ClientList}/>
+                  <Route exact path="/quotations" component={QuotationList}/>
+                  <Route exact path="/projects" component={QuotationDetail}/>
+                  <Route exact path="/services" component={ProductForm}/>
+                  <Route exact path="/packages" component={ProductForm}/>
+                  <Route component={NoMatch}/>
+              </Switch>
+          </div>
+          <div className="footer"></div>
         </div>
       </Router>
     );

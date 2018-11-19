@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { Button } from 'antd';
 import './App.css';
 
-import LandningPage from './components/Pages/landing_page';
-import LandingPage from './components/Pages/landing_page';
+import DashboardItem from './components/dashboard/DashboardItem';
+import PatientList from './components/patients/PatientList';
 
 class App extends Component {
   render() {
@@ -12,11 +12,14 @@ class App extends Component {
       <div className="App">
         <Router>
           <div className="">
-            <Link exact to="/">Home</Link>
+            <Link exact to="/">Dashboard</Link>
+            <Link to="/list">Patient List</Link>
             
 
             <Switch>
-              <Route exact path="/" component={LandingPage}/>
+              <Route exact path="/" component={DashboardItem}/>
+              <Route path="/list" render={PatientList}/>
+              <Route component={DashboardItem}/>
           </Switch>
 
           </div>

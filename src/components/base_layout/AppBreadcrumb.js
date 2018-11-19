@@ -4,7 +4,10 @@ import { Breadcrumb } from 'antd';
 
 const breadcrumbNameMap = {
   '': 'Dashboard',
-  'list': 'Patient List'
+  'clients': 'Clients',
+  'Quotations': 'Quotations',
+  'projects': 'Projects',
+  'settings': 'Settings'
 };
 const AppBreadcrumb = withRouter((props) => {
   const { location } = props;

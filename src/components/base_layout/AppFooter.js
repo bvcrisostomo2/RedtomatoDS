@@ -6,8 +6,8 @@ const { Footer } = Layout;
 class AppFooter extends Component {
     render() {
         return(
-            <Footer style={{ textAlign: 'center', backgroundColor: 'rgb(171,211,186)' }}>
-                © Redtomato Design Studio 2018
+            <Footer style={{ textAlign: 'center' }}>
+                © Franz Product Catalog
             </Footer>
         );
     }
